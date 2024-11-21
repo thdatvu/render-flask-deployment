@@ -6,11 +6,11 @@ import json
 import logging
 from Config import *
 from SQLQuery import *
+app = flask.Flask(__name__)
 try:
     # kết nối
     conn = pyodbc.connect(con_str)
     print("Kết nối Thành công")
-    app = flask.Flask(__name__)
     # GET: select, POST: insert, PUT: cập nhật dữ liệu, DELETE: xóa dữ liệu
     @app.route('/api/sanpham/getall', methods=['GET'])
     def getAllSanPham():
