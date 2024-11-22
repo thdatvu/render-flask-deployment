@@ -29,11 +29,10 @@ try:
             return resp
         except Exception as e:
             return flask.jsonify({"lỗi":e})
-    @app.route("/", methods=["GET"])
-    def home():
-        return flask.jsonify({"message": "Welcome to the API"}), 200
-
-    
+    @app.route("/", methods=["GET", "HEAD"])
+    def index():
+        return "Server is running", 200
+  
     @app.route('/api/sanpham/getbyname/<ten>', methods=['GET'])
     def getByName(ten):
         try:
