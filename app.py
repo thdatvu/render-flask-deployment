@@ -11,7 +11,12 @@ try:
     # kết nối
     conn = pyodbc.connect(con_str)
     print("Kết nối Thành công")
+    
     # GET: select, POST: insert, PUT: cập nhật dữ liệu, DELETE: xóa dữ liệu
+    @app.route("/", methods=["GET", "HEAD"])
+    def index():
+        return "Server is running", 200
+
     @app.route('/api/sanpham/getall', methods=['GET'])
     def getAllSanPham():
         try:
@@ -29,10 +34,7 @@ try:
             return resp
         except Exception as e:
             return flask.jsonify({"lỗi":e})
-    @app.route("/", methods=["GET", "HEAD"])
-    def index():
-        return "Server is running", 200
-  
+    
     @app.route('/api/sanpham/getbyname/<ten>', methods=['GET'])
     def getByName(ten):
         try:
@@ -827,6 +829,6 @@ try:
                 conn.close()
 
     if __name__ == "__main__":
-        app.run(debug=True, host='192.168.1.14', port=5000)
+        app.run(debug=True, host='192.168.1.104', port=5000)
 except:
     print("Lỗi")
