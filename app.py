@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 import requests
 import pyodbc
 import flask
@@ -829,6 +830,7 @@ try:
                 conn.close()
 
     if __name__ == "__main__":
-        app.run(debug=True, host='192.168.1.104', port=5000)
+        port = int(os.getenv("PORT", 5000))  # Lấy PORT từ biến môi trường, mặc định là 5000 nếu không có
+        app.run(debug=True, host="0.0.0.0", port=port)
 except:
     print("Lỗi")
